@@ -5,6 +5,7 @@ import 'package:flutter_web_dashboard/pages/overview/overview.dart';
 import 'package:flutter_web_dashboard/routing/routes.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings){
+  print(settings.name);
   switch (settings.name) {
     case overviewPageRoute:
       return _getPageRoute(OverviewPage());
