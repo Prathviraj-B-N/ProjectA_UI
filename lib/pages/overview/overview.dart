@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_web_dashboard/helpers/reponsiveness.dart';
 import 'package:flutter_web_dashboard/constants/controllers.dart';
 import 'package:flutter_web_dashboard/pages/overview/widgets/available_drivers_table.dart';
+import 'package:flutter_web_dashboard/pages/overview/widgets/file_view_.dart';
 import 'package:flutter_web_dashboard/pages/overview/widgets/overview_cards_large.dart';
 import 'package:flutter_web_dashboard/pages/overview/widgets/overview_cards_medium.dart';
 import 'package:flutter_web_dashboard/pages/overview/widgets/overview_cards_small.dart';
@@ -39,18 +40,17 @@ class OverviewPage extends StatelessWidget {
                 if (ResponsiveWidget.isCustomSize(context))
                   OverviewCardsMediumScreen()
                 else
-                  OverviewCardsLargeScreen()
-              else
-                OverviewCardsSmallScreen(),
-              if (!ResponsiveWidget.isSmallScreen(context))
-                RevenueSectionLarge()
-              else
-                RevenueSectionSmall(),
+                  OverviewCardsLargeScreen(),
+              // if (!ResponsiveWidget.isSmallScreen(context))
+              //   RevenueSectionLarge()
+              // else
+              //   RevenueSectionSmall(),
 
-                AvailableDriversTable(),
-             
+              //   AvailableDriversTable(),
+             FileView(),
             ],
-          ))
+          )),
+          
         ],
       ),
     );

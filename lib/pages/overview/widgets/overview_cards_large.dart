@@ -11,7 +11,7 @@ class OverviewCardsLargeScreen extends StatelessWidget {
     return  Row(
               children: [
                 InfoCard(
-                  title: "Rides in progress",
+                  title: "Total Videos",
                   value: "7",
                   onTap: () {},
                   topColor: Colors.orange,
@@ -20,7 +20,7 @@ class OverviewCardsLargeScreen extends StatelessWidget {
                   width: _width / 64,
                 ),
                 InfoCard(
-                  title: "Packages delivered",
+                  title: "Watched",
                   value: "17",
                   topColor: Colors.lightGreen,
                   onTap: () {},
@@ -29,7 +29,7 @@ class OverviewCardsLargeScreen extends StatelessWidget {
                   width: _width / 64,
                 ),
                 InfoCard(
-                  title: "Cancelled delivery",
+                  title: "Total Subjects",
                   value: "3",
                   topColor: Colors.redAccent,
                   onTap: () {},
@@ -38,7 +38,7 @@ class OverviewCardsLargeScreen extends StatelessWidget {
                   width: _width / 64,
                 ),
                 InfoCard(
-                  title: "Scheduled deliveries",
+                  title: "Popular Video",
                   value: "32",
                   onTap: () {},
                 ),

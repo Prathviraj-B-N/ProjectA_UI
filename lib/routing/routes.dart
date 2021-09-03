@@ -23,7 +23,8 @@ class MenuItem {
 
 List<MenuItem> sideMenuItemRoutes = [
  MenuItem(overviewPageDisplayName, overviewPageRoute),
- MenuItem(driversPageDisplayName, driversPageRoute),
- MenuItem(clientsPageDisplayName, clientsPageRoute),
- MenuItem(authenticationPageDisplayName, authenticationPageRoute),
+ 
 ];
+// MenuItem(driversPageDisplayName, driversPageRoute),
+//  MenuItem(clientsPageDisplayName, clientsPageRoute),
+//  MenuItem(authenticationPageDisplayName, authenticationPageRoute),
