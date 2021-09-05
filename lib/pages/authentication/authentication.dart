@@ -4,9 +4,32 @@ import 'package:flutter_web_dashboard/routing/routes.dart';
 import 'package:flutter_web_dashboard/widgets/custom_text.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
+import '../../userModel.dart';
+
+Future<UserModel> createUser(String usn, String password) async {
+  // TODO: CHANGE URL IN PRODUCTION
+  final String loginAPIurl = "http://localhost:8090/login";
+  
+  final loginResponse = await http.post(Uri.parse(loginAPIurl),body:{
+    "usn":usn,
+    "password": password
+  });
+
+  if(loginResponse.statusCode == 202){
+    final String loginResponseString = loginResponse.body;
+    return userModelFromJson(loginResponseString);
+  }else{
+    return null;
+  }
+}
 
 class AuthenticationPage extends StatelessWidget {
-  const AuthenticationPage({Key key}) : super(key: key);
+
+  final TextEditingController usnController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  //const AuthenticationPage({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +65,7 @@ class AuthenticationPage extends StatelessWidget {
               Row(
                 children: [
                   CustomText(
-                    text: "Welcome back to the admin panel.",
+                    text: "Welcome.",
                     color: lightGrey,
                   ),
                 ],
@@ -51,9 +74,10 @@ class AuthenticationPage extends StatelessWidget {
                 height: 15,
               ),
               TextField(
+                controller:usnController,
                 decoration: InputDecoration(
-                    labelText: "Email",
-                    hintText: "abc@domain.com",
+                    labelText: "Usn",
+                    hintText: "4SF18CS001",
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20))),
               ),
@@ -61,10 +85,11 @@ class AuthenticationPage extends StatelessWidget {
                 height: 15,
               ),
               TextField(
+                controller:passwordController,
                 obscureText: true,
                 decoration: InputDecoration(
                     labelText: "Password",
-                    hintText: "123",
+                    hintText: "Abc123@",
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20))),
               ),
@@ -91,8 +116,16 @@ class AuthenticationPage extends StatelessWidget {
                 height: 15,
               ),
               InkWell(
-                onTap: (){
-                  Get.offAllNamed(rootRoute);
+                onTap: () async {
+                  final String usn = usnController.text;
+                  final String password = passwordController.text;
+
+                  final UserModel user = await createUser(usn, password);
+                  if(user != null){
+                    Get.offAllNamed(rootRoute);
+                  }else{
+                    Get.offAllNamed(authenticationPageRoute);
+                  }
                 },
                 child: Container(
                   decoration: BoxDecoration(color: active, 
