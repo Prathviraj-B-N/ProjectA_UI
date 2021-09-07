@@ -28,7 +28,7 @@ class AuthenticationPage extends StatelessWidget {
 
   final TextEditingController usnController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  var loginFailed = "f".obs;
+  var loginFailed = false.obs;
 
   //const AuthenticationPage({Key key}) : super(key: key);
   @override
@@ -91,7 +91,7 @@ class AuthenticationPage extends StatelessWidget {
                 decoration: InputDecoration(
                     labelText: "Password",
                     hintText: "Abc123@",
-                    errorText: loginStatus()?null:"Invalid USN or Password!",
+                    errorText: loginFailed.value?"Invalid USN or Password!":null,
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20))),
               )),
@@ -126,7 +126,7 @@ class AuthenticationPage extends StatelessWidget {
                   if(user != null){
                     Get.offAllNamed(rootRoute);
                   }else{
-                    loginFailed.value = "t";
+                    loginFailed.value = true;
                   }
                 },
                 child: Container(
@@ -158,13 +158,5 @@ class AuthenticationPage extends StatelessWidget {
         ),
       ),
     );
-  }
-  bool loginStatus(){
-  if(loginFailed!="f"){
-    return false;
-  }
-  else{
-    return true;
-  }
   }
 }
