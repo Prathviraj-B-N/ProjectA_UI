@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import '../../userModel.dart';
+import '../../constants/userConst.dart' as userConst;
 
 Future<UserModel> createUser(String usn, String password) async {
   // TODO: CHANGE URL IN PRODUCTION
@@ -124,7 +125,15 @@ class AuthenticationPage extends StatelessWidget {
 
                   final UserModel user = await createUser(usn, password);
                   if(user != null){
+                    
+                    userConst.usn = user.usn;             
+                    userConst.name = user.name;
+                    userConst.phone = user.phone;
+                    userConst.email = user.email;
+                    userConst.branch = user.branch;
+                    
                     Get.offAllNamed(rootRoute);
+                  
                   }else{
                     loginFailed.value = true;
                   }
